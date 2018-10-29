@@ -1,20 +1,13 @@
 #!flask/bin/python
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
-test = [
-    {
-            'id': 1,
-            'description': 'it works!'
-    }
-]
-
-@app.route("/api", methods=['GET'])
-def hello():
-    return jsonify({'test': test})
+@app.route("/api/<board>", methods=['GET'])
+def makeMove(board):
+    return (board)
 # @app.route('/api/v1.0/get_move', methods=['GET'])
 # def get_move():
 #     return jsonify({'test': test})
