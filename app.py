@@ -10,10 +10,21 @@ board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     board[int(space)] = "X"
+    #Step 3
+    centerPlacement = placeInCenter()
+    if centerPlacement != "null":
+        return(centerPlacement)
+    #Step 4
     cornerPlacement = placeInCorner()
     if cornerPlacement != "null":
         return(cornerPlacement)
     return ("null")
+
+def placeInCenter():
+    if board[4] !="X" and board[0] == "null":
+        board[4] = "O"
+        return('4')
+    return("null")
 
 def placeInCorner():
     if board[0] != "X" and board[0] == "null":
