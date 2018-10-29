@@ -11,8 +11,24 @@ board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 def makeMove(space):
     board[int(space)] = "X"
     board[3] = "O"
-    print board
+    cornerMove = placeInCorner()
+    print cornerMove
     return ('3')
+
+def placeInCorner():
+    if board[0] != "X" && board[0] != "null":
+        board[0] = "O"
+        return(0)
+    if board[2] != "X" && board[2] != "null":
+        board[2] = "O"
+        return(2)
+    if board[6] != "X" && board[6] != "null":
+        board[6] = "O"
+        return(6)
+    if board[8] != "X" && board[8] != "null":
+        board[8] = "O"
+        return(8)
+    return()
 
 # @app.route('/api/v1.0/get_move', methods=['GET'])
 # def get_move():
