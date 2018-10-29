@@ -1,7 +1,7 @@
 #!flask/bin/python
 from flask import Flask, jsonify
 
-app = Flask()
+app = Flask(__name__)
 
 test = [
     {
