@@ -35,27 +35,28 @@ def winningMove():
     row = 0
     col = 0
     placeholder = -1
-    while i < 9:
+    while i <= 9:
         print i
-        print board[i]
+        # print board[i]
         if board[i] == "null":
-            print "in Null"
             if placeholder == -1:
                 placeholder = i
             else:
                 row += 3
+                placeholder = -1
                 col = 0
                 i = row
         if board[i] == "X":
-            print "in X"
             row += 3
             col = 0
             i = row
-        i += 1
-        col += 1
-        if col == 3:
-            board[placeholder]
-            return(string(placeholder))
+            placeholder = -1
+        else:
+            i += 1
+            col += 1
+        # if col == 3:
+        #     board[placeholder]
+        #     return(string(placeholder))
     return("null")
 
 def placeInCenter():
