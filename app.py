@@ -36,7 +36,10 @@ def winningMove():
     col = 0
     placeholder = -1
     while i < 9:
+        print i
+        print board[i]
         if board[i] == "null":
+            print "in Null"
             if placeholder == -1:
                 placeholder = i
             else:
@@ -44,6 +47,7 @@ def winningMove():
                 col = 0
                 i = row
         if board[i] == "X":
+            print "in X"
             row += 3
             col = 0
             i = row
