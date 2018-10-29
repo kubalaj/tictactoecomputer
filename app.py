@@ -11,6 +11,8 @@ board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 def makeMove(space):
     board[int(space)] = "X"
     #Step 1
+    winner = winningMove()
+    print winner
     #Step 3
     centerPlacement = placeInCenter()
     if centerPlacement != "null":
@@ -27,7 +29,21 @@ def makeMove(space):
 
 
 def winningMove():
-    for spaces in board
+    score = 0
+    i = 0
+    row = 0
+    placeholder = -1
+    while i < 9:
+        if board[i] == "null":
+            if placeholder == -1:
+                placeholder = i
+            else:
+                row += 3
+                i = row
+        if board[i] == "X":
+            row += 3
+            i = row
+
 def placeInCenter():
     if board[4] != "X" and board[4] == "null":
         board[4] = "O"
