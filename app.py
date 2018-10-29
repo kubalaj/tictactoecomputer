@@ -35,7 +35,7 @@ def winningMove():
     row = 0
     col = 0
     placeholder = -1
-    while i < 8:
+    while i <= 8:
         print i
         # print board[i]
         if board[i] == "null":
