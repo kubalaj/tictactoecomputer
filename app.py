@@ -16,9 +16,9 @@ def makeMove(space):
         return(winningPlacement)
     print winningPlacement
     #Step 3
-    centerPlacement = placeInCenter()
-    if centerPlacement != "null":
-        return(centerPlacement)
+    # centerPlacement = placeInCenter()
+    # if centerPlacement != "null":
+    #     return(centerPlacement)
     # Step 4
     cornerPlacement = placeInCorner()
     if cornerPlacement != "null":
