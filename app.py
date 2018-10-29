@@ -12,7 +12,7 @@ def makeMove(space):
     board[int(space)] = "X"
     #Step 1
     winningPlacement = winningMove()
-    if winner != "null":
+    if winningPlacement != "null":
         return(winningPlacement)
     print winningPlacement
     #Step 3
