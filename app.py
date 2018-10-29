@@ -35,7 +35,7 @@ def winningMove():
     nullCounter = 0
     winningCounter = 0
     nullSpace = -1
-    while i < 3:
+    while i < 9:
         print i
         if board[i] == "X":
             return("null")
@@ -47,6 +47,10 @@ def winningMove():
         if nullCounter == 1 and winningCounter == 2:
             board[nullCounter] = "0"
             return(str(nullCounter))
+        if i - 1 % 3 == 0:
+            nullCounter = 0
+            winningCounter = 0
+            nullSpace = -1
         i += 1
 
 
