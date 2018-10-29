@@ -9,11 +9,11 @@ board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
-    print space
     board[int(space)] = "X"
-    print board[int(space)]
+    board[3] = "O"
     print board
-    return (space)
+    return ('3')
+
 # @app.route('/api/v1.0/get_move', methods=['GET'])
 # def get_move():
 #     return jsonify({'test': test})
