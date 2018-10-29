@@ -29,9 +29,9 @@ def makeMove(space):
 
 
 def winningMove():
-    score = 0
     i = 0
     row = 0
+    col = 0
     placeholder = -1
     while i < 9:
         if board[i] == "null":
@@ -39,10 +39,17 @@ def winningMove():
                 placeholder = i
             else:
                 row += 3
+                col = 0
                 i = row
         if board[i] == "X":
             row += 3
+            col = 0
             i = row
+        i += 1
+        col += 1
+        if col == 3:
+            board[placeholder]
+            return(string(placeholder)) 
 
 def placeInCenter():
     if board[4] != "X" and board[4] == "null":
