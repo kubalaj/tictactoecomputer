@@ -18,6 +18,10 @@ def makeMove(space):
     cornerPlacement = placeInCorner()
     if cornerPlacement != "null":
         return(cornerPlacement)
+    #Step 5
+    sidePlacement = placeOnSides()
+    if sidePlacement != "null":
+        return(sidePlacement)
     return ("null")
 
 def placeInCenter():
@@ -39,6 +43,21 @@ def placeInCorner():
     if board[8] != "X" and board[8] == "null":
         board[8] = "O"
         return('8')
+    return ("null")
+
+def placeOnSides():
+    if board[1] != "X" and board[1] == "null":
+        board[1] = "O"
+        return('1')
+    if board[3] != "X" and board[3] == "null":
+        board[3] = "O"
+        return('3')
+    if board[5] != "X" and board[5] == "null":
+        board[5] = "O"
+        return('5')
+    if board[7] != "X" and board[7] == "null":
+        board[7] = "O"
+        return('7')
     return ("null")
 
 # @app.route('/api/v1.0/get_move', methods=['GET'])
