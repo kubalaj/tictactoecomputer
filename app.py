@@ -34,14 +34,20 @@ def winningMove():
     i = 0
     nullCounter = 0
     winningCounter = 0
-    while i < 8:
+    nullSpace = -1
+    while i < 3:
         print i
         if board[i] == "X":
             return("null")
         if board[i] == "null":
             nullCounter += 1
+            nullSpace = i
         if board[i] == "O":
             winningCounter += 1
+        if nullCounter == 1 and winningCounter == 2:
+            board[nullCounter] = "0"
+            return(str(nullCounter))
+        i += 1
 
 
     # i = 0
