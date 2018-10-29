@@ -5,9 +5,14 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/api/<board>", methods=['GET'])
-def makeMove(board):
-    return (board)
+board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
+
+@app.route("/api/<space>", methods=['GET'])
+def makeMove(space):
+    print space
+    board[int(space)] = "X"
+    print board[int(space)]
+    return (space)
 # @app.route('/api/v1.0/get_move', methods=['GET'])
 # def get_move():
 #     return jsonify({'test': test})
