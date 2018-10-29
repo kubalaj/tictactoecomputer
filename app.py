@@ -33,7 +33,7 @@ def makeMove(space):
 def winningMove():
     i = 0
     row = 0
-    col = 0
+    col = 1
     placeholder = -1
     while i <= 8:
         print i
@@ -44,19 +44,19 @@ def winningMove():
             else:
                 row += 3
                 placeholder = -1
-                col = 0
+                col = 1
                 i = row
         if board[i] == "X":
             row += 3
-            col = 0
+            col = 1
             i = row
             placeholder = -1
         else:
             i += 1
             col += 1
-        # if col == 3:
-        #     board[placeholder]
-        #     return(string(placeholder))
+        if col == 3:
+            board[placeholder]
+            return(string(placeholder))
     return("null")
 
 def placeInCenter():
