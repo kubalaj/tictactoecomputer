@@ -32,33 +32,48 @@ def makeMove(space):
 
 def winningMove():
     i = 0
-    row = 0
-    col = 1
-    placeholder = -1
+    nullCounter = 0
+    winningCounter = 0
     while i < 8:
-        # print i
-        print col
-        # print board[i]
-        if board[i] == "null":
-            if placeholder == -1:
-                placeholder = i
-            else:
-                row += 3
-                placeholder = -1
-                col = 1
-                i = row
+        print i
         if board[i] == "X":
-            row += 3
-            col += 1
-            i = row
-            placeholder = -1
-        if col == 3:
-            board[placeholder]
-            return(str(placeholder))
-        else:
-            i += 1
-            col += 1
-    return("null")
+            return("null")
+        if board[i] == "null":
+            nullCounter += 1
+        if board[i] == "O":
+            winningCounter += 1
+
+
+    # i = 0
+    # row = 0
+    # col = 1
+    # placeholder = -1
+    # while i < 8:
+    #     # print i
+    #     print col
+    #     # print board[i]
+    #     if board[i] == "null":
+    #         if placeholder == -1:
+    #             placeholder = i
+    #         else:
+    #             row += 3
+    #             placeholder = -1
+    #             col = 1
+    #             i = row
+    #             continue
+    #     if board[i] == "X":
+    #         row += 3
+    #         col = 1
+    #         i = row
+    #         placeholder = -1
+    #         continue
+    #     if col == 3:
+    #         board[placeholder]
+    #         return(str(placeholder))
+    #     else:
+    #         i += 1
+    #         col += 1
+    # return("null")
 
 def placeInCenter():
     if board[4] != "X" and board[4] == "null":
