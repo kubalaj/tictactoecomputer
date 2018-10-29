@@ -16,16 +16,16 @@ def makeMove(space):
     return ('3')
 
 def placeInCorner():
-    if board[0] != "X" && board[0] != "null":
+    if board[0] != "X" and board[0] != "null":
         board[0] = "O"
         return(0)
-    if board[2] != "X" && board[2] != "null":
+    if board[2] != "X" and board[2] != "null":
         board[2] = "O"
         return(2)
-    if board[6] != "X" && board[6] != "null":
+    if board[6] != "X" and board[6] != "null":
         board[6] = "O"
         return(6)
-    if board[8] != "X" && board[8] != "null":
+    if board[8] != "X" and board[8] != "null":
         board[8] = "O"
         return(8)
     return()
