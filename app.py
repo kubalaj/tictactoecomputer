@@ -12,9 +12,9 @@ test = [
     }
 ]
 
-@app.route("/")
+@app.route("/api", methods=['GET'])
 def hello():
-    return "sup"
+    return jsonify({'test': test})
 # @app.route('/api/v1.0/get_move', methods=['GET'])
 # def get_move():
 #     return jsonify({'test': test})
