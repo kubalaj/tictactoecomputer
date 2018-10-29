@@ -15,9 +15,9 @@ def makeMove(space):
     if centerPlacement != "null":
         return(centerPlacement)
     # Step 4
-    # cornerPlacement = placeInCorner()
-    # if cornerPlacement != "null":
-    #     return(cornerPlacement)
+    cornerPlacement = placeInCorner()
+    if cornerPlacement != "null":
+        return(cornerPlacement)
     return ("null")
 
 def placeInCenter():
@@ -27,9 +27,6 @@ def placeInCenter():
     return("null")
 
 def placeInCorner():
-    if board[4] != "X" and board[0] == "null":
-        board[4] = "O"
-        return('4')
     if board[0] != "X" and board[0] == "null":
         board[0] = "O"
         return('0')
