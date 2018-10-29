@@ -12,6 +12,7 @@ def makeMove(space):
     print space
     board[int(space)] = "X"
     print board[int(space)]
+    print board
     return (space)
 # @app.route('/api/v1.0/get_move', methods=['GET'])
 # def get_move():
