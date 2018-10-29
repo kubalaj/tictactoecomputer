@@ -14,7 +14,7 @@ def makeMove(space):
     winningPlacement = winningMove()
     if winner != "null":
         return(winningPlacement)
-    print winner
+    print winningPlacement
     #Step 3
     centerPlacement = placeInCenter()
     if centerPlacement != "null":
@@ -35,7 +35,7 @@ def winningMove():
     row = 0
     col = 0
     placeholder = -1
-    while i <= 9:
+    while i < 8:
         print i
         # print board[i]
         if board[i] == "null":
