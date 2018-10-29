@@ -35,8 +35,9 @@ def winningMove():
     row = 0
     col = 1
     placeholder = -1
-    while i <= 8:
-        print i
+    while i < 8:
+        # print i
+        print col
         # print board[i]
         if board[i] == "null":
             if placeholder == -1:
@@ -48,15 +49,15 @@ def winningMove():
                 i = row
         if board[i] == "X":
             row += 3
-            col = 1
+            col += 1
             i = row
             placeholder = -1
+        if col == 3:
+            board[placeholder]
+            return(str(placeholder))
         else:
             i += 1
             col += 1
-        if col == 3:
-            board[placeholder]
-            return(string(placeholder))
     return("null")
 
 def placeInCenter():
