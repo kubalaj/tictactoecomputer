@@ -11,7 +11,7 @@ board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 def makeMove(space):
     board[int(space)] = "X"
     #Step 1
-    winningPlacement = horizontalWinningMove()
+    winningPlacement = verticalWinningMove()
     if winningPlacement != "null":
         return(winningPlacement)
     #Step 3
@@ -28,6 +28,24 @@ def makeMove(space):
         return(sidePlacement)
     return ("null")
 
+def diagonalWinningMove():
+    if board[4] == "null" and (board[0] == "O" and board[8] == "O") or (board[2] == "O" and board[6] == "O"):
+        board[4] = "O"
+        return("4")
+    if board[0] == "null" and (board[4] == "O" and board[8] == "O"):
+        board[0] = "O"
+        return("0")
+    if board[2] == "null" and (board[4] == "O" and board[6] == "O"):
+        board[2] = "O"
+        return("2")
+    if board[6] == "null" and (board[4] == "O" and board[2] == "O"):
+        board[6] = "O"
+        return("6")
+    if board[8] == "null" and (board[4] == "O" and board[0] == "O"):
+        board[8] = "O"
+        return("8")
+    else:
+        return("null")
 
 def verticalWinningMove():
     i = 0
@@ -100,21 +118,6 @@ def placeOnSides():
         board[7] = "O"
         return('7')
     return ("null")
-
-# @app.route('/api/v1.0/get_move', methods=['GET'])
-# def get_move():
-#     return jsonify({'test': test})
-#
-# @app.route('/api/v1.0/is_winner', methods=['GET'])
-# def is_winner():
-#     return jsonify({'test': test})
-#0 Check to see if there is a Winner
-#1 Need a Function to See Computer Can Make Move To Win game
-#2 Need Function to see if there is a move Player would make to # WARNING:
-#3 Need a function to place in corner
-#4 If no Corners see if center is free
-#5 if center is not free go to sides
-
 
 if __name__ == '__main__':
     app.run()
