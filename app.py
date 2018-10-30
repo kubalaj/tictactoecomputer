@@ -31,30 +31,19 @@ def makeMove(space):
 
 
 def winningMove():
-    i = 0
-    nullCount = 0
-    zeroCount = 0
-    nullSpace = -1
-    while i < 9:
-        if board[i] == "X":
-            i = i + 3 - i % 3
-            continue
+    while i < 9
         if board[i] == "null":
-            nullCount += 1
-            nullSpace = i
-        if board[i] == "O":
-            zeroCount += 1
-        if nullCount == 1 and zeroCount == 2:
-            print "work"
-            board[nullSpace] = "0"
-            return(str(nullSpace))
-        if i % 3 == 0 and i != 0:
-            nullCount = 0
-            zeroCount = 0
-            nullSpace = -1
-        i += 1
-    return("null")
-
+            if i % 3 == 1 and board[i - 1] = "X" and board[i + 1] = "X":
+                board[i] = "O"
+                return(str(i))
+            if i % 3 == 0 and board[i + 1] = "X" and board[i + 2] = "X":
+                board[i] = "O"
+                return(str(i))
+            if i % 3 == 2 and board[i - 1] = "X" and board[i - 2] = "X":
+                board[i] = "O"
+                return(str(i))
+        else:
+            return("null")
 
 
 def placeInCenter():
