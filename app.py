@@ -11,11 +11,9 @@ board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 def makeMove(space):
     board[int(space)] = "X"
     #Step 1
-    winningPlacement = winningMove()
-    print winningPlacement
+    winningPlacement = horizontalWinningMove()
     if winningPlacement != "null":
         return(winningPlacement)
-    # print winningPlacement
     #Step 3
     # centerPlacement = placeInCenter()
     # if centerPlacement != "null":
@@ -31,7 +29,25 @@ def makeMove(space):
     return ("null")
 
 
-def winningMove():
+def verticalWinningMove():
+    i = 0
+    while i < 9:
+        if board[i] == "null":
+            if i < 3 and board[i + 3] == "O" and board[i + 6] == "O":
+                board[i] = "O"
+                return(str(i))
+            if i >= 3 and i < 6 and board[i - 3] == "O" and board[i + 3] == "O":
+                board[i] = "O"
+                return(str(i))
+            if i >= 6 and board[i - 3] == "O" and board[i - 6] == "O":
+                board[i] = "O"
+                return(str(i))
+            i += 1
+        else:
+            i += 1
+    return("null")
+
+def horizontalWinningMove():
     i = 0
     while i < 9:
         if board[i] == "null":
