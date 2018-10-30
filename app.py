@@ -48,7 +48,7 @@ def winningMove():
         if nullCounter == 1 and winningCounter == 2:
             board[nullCounter] = "0"
             return(str(nullCounter))
-        if i - 1 % 3 == 0:
+        if i % 3 == 0 and i != 0:
             nullCounter = 0
             winningCounter = 0
             nullSpace = -1
