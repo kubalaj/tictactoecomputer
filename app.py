@@ -38,8 +38,7 @@ def winningMove():
     while i < 9:
         print i
         if board[i] == "X":
-            i += 1
-            return("null")
+            i = i + 3 - i % 3
         if board[i] == "null":
             nullCounter += 1
             nullSpace = i
