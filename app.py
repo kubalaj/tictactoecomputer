@@ -33,13 +33,13 @@ def makeMove(space):
 def winningMove():
     while i < 9
         if board[i] == "null":
-            if i % 3 == 1 and board[i - 1] = "X" and board[i + 1] = "X":
+            if i % 3 == 1 and board[i - 1] == "X" and board[i + 1] == "X":
                 board[i] = "O"
                 return(str(i))
-            if i % 3 == 0 and board[i + 1] = "X" and board[i + 2] = "X":
+            if i % 3 == 0 and board[i + 1] == "X" and board[i + 2] == "X":
                 board[i] = "O"
                 return(str(i))
-            if i % 3 == 2 and board[i - 1] = "X" and board[i - 2] = "X":
+            if i % 3 == 2 and board[i - 1] == "X" and board[i - 2] == "X":
                 board[i] = "O"
                 return(str(i))
         else:
