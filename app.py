@@ -11,13 +11,13 @@ board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 def makeMove(space):
     board[int(space)] = "X"
     #Step 1
-    winningPlacement = verticalWinningMove()
-    if winningPlacement != "null":
-        return(winningPlacement)
+    placeForWin = winningMove()
+    if placeForWin != "null":
+        return(placeForWin)
     #Step 3
-    # centerPlacement = placeInCenter()
-    # if centerPlacement != "null":
-    #     return(centerPlacement)
+    centerPlacement = placeInCenter()
+    if centerPlacement != "null":
+        return(centerPlacement)
     # Step 4
     cornerPlacement = placeInCorner()
     if cornerPlacement != "null":
@@ -27,6 +27,20 @@ def makeMove(space):
     if sidePlacement != "null":
         return(sidePlacement)
     return ("null")
+
+
+def winningMove():
+    diagonalWin = diagonalWinningMove()
+    if diagonalWin != "null":
+        return(diagonalWin)
+    verticalWin = verticalWinningMove()
+    if verticalWin != "null":
+        return(verticalWin)
+    horizontalWin = horizontalWinningMove()
+    if horizontalWin != "null":
+        return(horizontalWin)
+    else:
+        return("null")
 
 def diagonalWinningMove():
     if board[4] == "null" and (board[0] == "O" and board[8] == "O") or (board[2] == "O" and board[6] == "O"):
