@@ -10,23 +10,23 @@ board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     board[int(space)] = "X"
-    #Step 1
+
     placeForWin = winningMove("win")
     if placeForWin != "null":
         return(placeForWin)
-    #Step 2
+
     placeToBlock = winningMove("block")
     if placeToBlock != "null":
         return(placeToBlock)
-    #Step 3
+
     centerPlacement = placeInCenter()
     if centerPlacement != "null":
         return(centerPlacement)
-    # Step 4
+
     cornerPlacement = placeInCorner()
     if cornerPlacement != "null":
         return(cornerPlacement)
-    #Step 5
+
     sidePlacement = placeOnSides()
     if sidePlacement != "null":
         return(sidePlacement)
