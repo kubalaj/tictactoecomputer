@@ -10,6 +10,10 @@ board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     board[int(space)] = "X"
+    #Step 1
+    placeForWin = winningMove()
+    if placeForWin != "null":
+        return(placeForWin)
     #Step 3
     centerPlacement = placeInCenter()
     if centerPlacement != "null":
@@ -23,6 +27,75 @@ def makeMove(space):
     if sidePlacement != "null":
         return(sidePlacement)
     return ("null")
+
+
+def winningMove():
+    diagonalWin = diagonalWinningMove()
+    if diagonalWin != "null":
+        return(diagonalWin)
+    verticalWin = verticalWinningMove()
+    if verticalWin != "null":
+        return(verticalWin)
+    horizontalWin = horizontalWinningMove()
+    if horizontalWin != "null":
+        return(horizontalWin)
+    else:
+        return("null")
+
+def diagonalWinningMove():
+    if board[4] == "null" and (board[0] == "O" and board[8] == "O") or (board[2] == "O" and board[6] == "O"):
+        board[4] = "O"
+        return("4")
+    if board[0] == "null" and (board[4] == "O" and board[8] == "O"):
+        board[0] = "O"
+        return("0")
+    if board[2] == "null" and (board[4] == "O" and board[6] == "O"):
+        board[2] = "O"
+        return("2")
+    if board[6] == "null" and (board[4] == "O" and board[2] == "O"):
+        board[6] = "O"
+        return("6")
+    if board[8] == "null" and (board[4] == "O" and board[0] == "O"):
+        board[8] = "O"
+        return("8")
+    else:
+        return("null")
+
+def verticalWinningMove():
+    i = 0
+    while i < 9:
+        if board[i] == "null":
+            if i < 3 and board[i + 3] == "O" and board[i + 6] == "O":
+                board[i] = "O"
+                return(str(i))
+            if i >= 3 and i < 6 and board[i - 3] == "O" and board[i + 3] == "O":
+                board[i] = "O"
+                return(str(i))
+            if i >= 6 and board[i - 3] == "O" and board[i - 6] == "O":
+                board[i] = "O"
+                return(str(i))
+            i += 1
+        else:
+            i += 1
+    return("null")
+
+def horizontalWinningMove():
+    i = 0
+    while i < 9:
+        if board[i] == "null":
+            if i % 3 == 1 and board[i - 1] == "O" and board[i + 1] == "O":
+                board[i] = "O"
+                return(str(i))
+            if i % 3 == 0 and board[i + 1] == "O" and board[i + 2] == "O":
+                board[i] = "O"
+                return(str(i))
+            if i % 3 == 2 and board[i - 1] == "O" and board[i - 2] == "O":
+                board[i] = "O"
+                return(str(i))
+            i += 1
+        else:
+            i += 1
+    return("null")
 
 def placeInCenter():
     if board[4] != "X" and board[4] == "null":
@@ -59,21 +132,6 @@ def placeOnSides():
         board[7] = "O"
         return('7')
     return ("null")
-
-# @app.route('/api/v1.0/get_move', methods=['GET'])
-# def get_move():
-#     return jsonify({'test': test})
-#
-# @app.route('/api/v1.0/is_winner', methods=['GET'])
-# def is_winner():
-#     return jsonify({'test': test})
-#0 Check to see if there is a Winner
-#1 Need a Function to See Computer Can Make Move To Win game
-#2 Need Function to see if there is a move Player would make to # WARNING:
-#3 Need a function to place in corner
-#4 If no Corners see if center is free
-#5 if center is not free go to sides
-
 
 if __name__ == '__main__':
     app.run()
