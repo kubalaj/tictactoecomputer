@@ -12,6 +12,7 @@ def makeMove(space):
     board[int(space)] = "X"
     #Step 1
     winningPlacement = winningMove()
+    print winningPlacement
     if winningPlacement != "null":
         return(winningPlacement)
     # print winningPlacement
@@ -34,15 +35,17 @@ def winningMove():
     i = 0
     while i < 9:
         if board[i] == "null":
-            if i % 3 == 1 and board[i - 1] == "X" and board[i + 1] == "X":
+            if i % 3 == 1 and board[i - 1] == "O" and board[i + 1] == "O":
                 board[i] = "O"
                 return(str(i))
-            if i % 3 == 0 and board[i + 1] == "X" and board[i + 2] == "X":
+            if i % 3 == 0 and board[i + 1] == "O" and board[i + 2] == "O":
                 board[i] = "O"
                 return(str(i))
-            if i % 3 == 2 and board[i - 1] == "X" and board[i - 2] == "X":
+            if i % 3 == 2 and board[i - 1] == "O" and board[i - 2] == "O":
                 board[i] = "O"
                 return(str(i))
+            i += 1
+        else:
             i += 1
     return("null")
 
