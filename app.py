@@ -42,10 +42,11 @@ def winningMove():
         if board[i] == "null":
             nullCount += 1
             nullSpace = i
-            i += 1
         if board[i] == "O":
             zeroCount += 1
-            print winningCounter
+        print zeroCount
+        print i
+        print "_____"
         if nullCount == 1 and zeroCount == 2:
             print 'yas'
             board[nullSpace] = "0"
