@@ -43,6 +43,7 @@ def winningMove():
             if i % 3 == 2 and board[i - 1] == "X" and board[i - 2] == "X":
                 board[i] = "O"
                 return(str(i))
+            i += 1
     return("null")
 
 def placeInCenter():
