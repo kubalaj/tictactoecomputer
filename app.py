@@ -44,11 +44,7 @@ def winningMove():
             nullSpace = i
         if board[i] == "O":
             zeroCount += 1
-        print zeroCount
-        print i
-        print "_____"
         if nullCount == 1 and zeroCount == 2:
-            print 'yas'
             board[nullSpace] = "0"
             return(str(nullSpace))
         if i % 3 == 0 and i != 0:
