@@ -11,9 +11,13 @@ board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 def makeMove(space):
     board[int(space)] = "X"
     #Step 1
-    placeForWin = winningMove()
+    placeForWin = winningMove("win")
     if placeForWin != "null":
         return(placeForWin)
+    #Step 2
+    placeToBlock = winningMove("block")
+    if placeToBlock != "null":
+        return(placeToBlock)
     #Step 3
     centerPlacement = placeInCenter()
     if centerPlacement != "null":
@@ -29,49 +33,57 @@ def makeMove(space):
     return ("null")
 
 
-def winningMove():
-    diagonalWin = diagonalWinningMove()
+def winningMove(winOrBlock):
+    diagonalWin = diagonalWinningMove(winOrBlock)
     if diagonalWin != "null":
         return(diagonalWin)
-    verticalWin = verticalWinningMove()
+    verticalWin = verticalWinningMove(winOrBlock)
     if verticalWin != "null":
         return(verticalWin)
-    horizontalWin = horizontalWinningMove()
+    horizontalWin = horizontalWinningMove(winOrBlock)
     if horizontalWin != "null":
         return(horizontalWin)
     else:
         return("null")
 
-def diagonalWinningMove():
-    if board[4] == "null" and (board[0] == "O" and board[8] == "O") or (board[2] == "O" and board[6] == "O"):
+def diagonalWinningMove(winOrBlock):
+    if winOrBlock == "win":
+        toMatch = "O"
+    if winOrBlock == "block":
+        toMatch = "X"
+    if board[4] == "null" and (board[0] == toMatch and board[8] == toMatch) or (board[2] == toMatch and board[6] == toMatch):
         board[4] = "O"
         return("4")
-    if board[0] == "null" and (board[4] == "O" and board[8] == "O"):
+    if board[0] == "null" and (board[4] == toMatch and board[8] == toMatch):
         board[0] = "O"
         return("0")
-    if board[2] == "null" and (board[4] == "O" and board[6] == "O"):
+    if board[2] == "null" and (board[4] == toMatch and board[6] ==toMatch):
         board[2] = "O"
         return("2")
-    if board[6] == "null" and (board[4] == "O" and board[2] == "O"):
+    if board[6] == "null" and (board[4] == toMatch and board[2] == toMatch):
         board[6] = "O"
         return("6")
-    if board[8] == "null" and (board[4] == "O" and board[0] == "O"):
+    if board[8] == "null" and (board[4] == toMatch and board[0] == toMatch):
         board[8] = "O"
         return("8")
     else:
         return("null")
 
-def verticalWinningMove():
+def verticalWinningMove(winOrBlock):
+    if winOrBlock == "win":
+        toMatch = "O"
+    if winOrBlock == "block":
+        toMatch = "X"
     i = 0
     while i < 9:
         if board[i] == "null":
-            if i < 3 and board[i + 3] == "O" and board[i + 6] == "O":
+            if i < 3 and board[i + 3] == toMatch and board[i + 6] == toMatch:
                 board[i] = "O"
                 return(str(i))
-            if i >= 3 and i < 6 and board[i - 3] == "O" and board[i + 3] == "O":
+            if i >= 3 and i < 6 and board[i - 3] == toMatch and board[i + 3] == toMatch:
                 board[i] = "O"
                 return(str(i))
-            if i >= 6 and board[i - 3] == "O" and board[i - 6] == "O":
+            if i >= 6 and board[i - 3] == toMatch and board[i - 6] == toMatch:
                 board[i] = "O"
                 return(str(i))
             i += 1
@@ -79,17 +91,21 @@ def verticalWinningMove():
             i += 1
     return("null")
 
-def horizontalWinningMove():
+def horizontalWinningMove(winOrBlock):
+    if winOrBlock == "win":
+        toMatch = "O"
+    if winOrBlock == "block":
+        toMatch = "X"
     i = 0
     while i < 9:
         if board[i] == "null":
-            if i % 3 == 1 and board[i - 1] == "O" and board[i + 1] == "O":
+            if i % 3 == 1 and board[i - 1] == toMatch and board[i + 1] == toMatch:
                 board[i] = "O"
                 return(str(i))
-            if i % 3 == 0 and board[i + 1] == "O" and board[i + 2] == "O":
+            if i % 3 == 0 and board[i + 1] == toMatch and board[i + 2] == toMatch:
                 board[i] = "O"
                 return(str(i))
-            if i % 3 == 2 and board[i - 1] == "O" and board[i - 2] == "O":
+            if i % 3 == 2 and board[i - 1] == toMatch and board[i - 2] == toMatch:
                 board[i] = "O"
                 return(str(i))
             i += 1
