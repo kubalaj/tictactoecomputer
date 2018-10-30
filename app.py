@@ -52,6 +52,7 @@ def winningMove():
             winningCounter = 0
             nullSpace = -1
         i += 1
+    return("null")
 
 
 
