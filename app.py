@@ -45,11 +45,12 @@ def winningMove():
         if board[i] == "O":
             zeroCount += 1
         if nullCount == 1 and zeroCount == 2:
+            print "work"
             board[nullSpace] = "0"
             return(str(nullSpace))
         if i % 3 == 0 and i != 0:
-            nullCounter = 0
-            winningCounter = 0
+            nullCount = 0
+            zeroCount = 0
             nullSpace = -1
         i += 1
     return("null")
