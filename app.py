@@ -5,11 +5,20 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-board= ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
+test = ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     board[int(space)] = "X"
+
+    #MINIMAX
+        #RETURN If End +1 0 -1
+        #Go Through Available Spots
+        #Call MINIMAX
+        #Return Best Value from those calls
+
+
+    #OLD ALGOR SIMPLE IMPLMENTATION MAYBE GOOD EASY MODE
     #Step 1
     placeForWin = winningMove()
     if placeForWin != "null":
@@ -28,6 +37,13 @@ def makeMove(space):
         return(sidePlacement)
     return ("null")
 
+
+def availableSpots(board):
+    available = []
+    for i in range(9):
+        if board[i] == "null":
+            available.append(i)
+    return available
 
 def winningMove():
     diagonalWin = diagonalWinningMove()
