@@ -45,7 +45,7 @@ def availableSpots(board):
         if board[i] == "null":
             available.append(i)
     return available
-    
+
 # Return if player has won
 def isWinning(board, player):
     #horizontal win
@@ -60,6 +60,18 @@ def isWinning(board, player):
     if board[0] == board [4] == board[8] == player or board[2] == board[4] == board[6] == player:
         return player
     return("null")
+
+def miniMax(board):
+    possibleMoves = availableSpots(board)
+
+    #Check for Win or Draw
+    if(isWinning(board, "X")):
+        return -10
+    elif(isWinning(board, "X")):
+        return 10
+    else
+        return 0
+
 
 
 
