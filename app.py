@@ -50,9 +50,11 @@ def isWinning(board, player):
     for i in range(3):
         if board[i] == board[i+1] == board[i+2] == player:
             return player
-    return "null"
     #vertical win
     for i in range(3):
+        print board[i]
+        print board [i+3]
+        print board[i+6]
         if board[i] == board [i+3] == board[i+6] == player:
             return player
     return("null")
