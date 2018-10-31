@@ -66,11 +66,11 @@ def miniMax(board, player):
 
     #Check for Win or Draw
     if(isWinning(board, "O") != "null"):
-        return {'score':-10}
+        return -10
     elif(isWinning(board, "X") != "null"):
-        return {'score': 10}
+        return 10
     elif len(possibleMoves) == 0:
-        return {'score':0}
+        return 0
     #If no win or draw recurssivly call
     listOfMoves = []
     print "before loop"
@@ -79,16 +79,18 @@ def miniMax(board, player):
             "move": "",
             "score": ""
         }
-        move['index'] = board[possibleMoves[i]]
+        moves['index'] = board[possibleMoves[i]]
         board[possibleMoves[i]] = player
         #Store each move
 
         if(player == "X"):
             choosenMove = miniMax(board, "O")
-            move['score'] = choosenMove['score']
+            print choosenMove
+            moves['score'] = choosenMove
         else:
             choosenMove = miniMax(board, "X")
-            move['score'] = choosenMove['score']
+            print choosenMove
+            moves['score'] = choosenMove
 
         board[possibleMoves[i]] = moves["index"]
         listOfMoves.append(moves)
