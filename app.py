@@ -99,7 +99,7 @@ def miniMax(board, player):
         itter = 0
         for move in range(len(moves)):
             # if move["score"] > bestScore:
-                bestScore = move["score"]
+                # bestScore = move["score"]
                 bestMove = itter
                 itter += 1
     else:
@@ -107,7 +107,7 @@ def miniMax(board, player):
         itter = 0
         for move in range(len(moves)):
             # if move["score"] < bestScore:
-                bestScore = move["score"]
+                # bestScore = move["score"]
                 bestMove = itter
                 itter += 1
     return bestMove
