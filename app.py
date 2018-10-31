@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-test = ["X", "null", "O", "null", "null", "null", "null", "null", "null"]
+test = ["X", "null", "O", "X", "null", "null", "null", "null", "null"]
 
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
@@ -74,35 +74,34 @@ def miniMax(board, player):
     #If no win or draw recurssivly call
     listOfMoves = []
     for i in range(len(possibleMoves)):
-        moves = {
-            "index": "",
-            "score": ""
-        }
+        moves = {}
         moves['index'] = board[possibleMoves[i]]
+        moves['pacement'] = possibleMoves[i]
         board[possibleMoves[i]] = player
         #Store each move
 
         if(player == "X"):
             choosenMove = miniMax(board, "O")
-            moves['score'] = choosenMove
+            moves['score'] = choosenMove['score']
         else:
             choosenMove = miniMax(board, "X")
-            moves['score'] = choosenMove
+            moves['score'] = choosenMove['score']
         board[possibleMoves[i]] = moves["index"]
         listOfMoves.append(moves)
 
+    bestMove = 0
     if player == "X":
         bestScore = -10000
         for move in range(len(listOfMoves)):
-            # if listOfMoves[move]['score'] > bestScore:
-            #     bestScore = listOfMoves[move]['score']
-            bestMove = 0
+            if listOfMoves[move]['score'] > bestScore:
+                bestScore = listOfMoves[move]['score']
+                bestMove = move
     else:
         bestScore = 10000
         for move in range(len(listOfMoves)):
-                    # if listOfMoves[move]['score'] < bestScore:
-                    #     bestScore = listOfMoves[move]['score']
-            bestMove = 0
+            if listOfMoves[move]['score'] < bestScore:
+                bestScore = listOfMoves[move]['score']
+                bestMove = move
     return listOfMoves[bestMove]
 
 #END MiniMax
