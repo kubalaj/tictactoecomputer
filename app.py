@@ -93,6 +93,7 @@ def miniMax(board, player):
         board[availableSpots[i]] = moves["index"]
         listOfMoves.append(moves)
 
+    print listOfMoves
 
 
 
