@@ -94,7 +94,7 @@ def miniMax(board, player):
 
         board[possibleMoves[i]] = moves["index"]
         listOfMoves.append(moves)
-    print "after loop"
+    print listOfMoves
 
 
 
