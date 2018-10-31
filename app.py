@@ -66,16 +66,16 @@ def miniMax(board, player):
 
     #Check for Win or Draw
     if(isWinning(board, "O") != "null"):
-        return -10
+        return {'score':-10}
     elif(isWinning(board, "X") != "null"):
-        return 10
+        return {'score':10}
     elif len(possibleMoves) == 0:
-        return 0
+        return {'score':0}
     #If no win or draw recurssivly call
     listOfMoves = []
     for i in range(len(possibleMoves)):
         moves = {
-            "move": "",
+            "index": "",
             "score": ""
         }
         moves['index'] = board[possibleMoves[i]]
@@ -91,19 +91,18 @@ def miniMax(board, player):
         board[possibleMoves[i]] = moves["index"]
         listOfMoves.append(moves)
 
-    bestMove = {}
     if player == "X":
         bestScore = -10000
         for move in range(len(listOfMoves)):
-            if listOfMoves[move] > bestScore:
-                bestScoreObj = listOfMoves[move]
-                bestScore = bestScoreObj['score']
+            # if listOfMoves[move]['score'] > bestScore:
+            #     bestScore = listOfMoves[move]['score']
+            bestMove = 0
     else:
         bestScore = 10000
         for move in range(len(listOfMoves)):
-            if listOfMoves[move] < bestScore:
-                bestScoreObj = listOfMoves[move]
-                bestScore = bestScoreObj['score']
+                    # if listOfMoves[move]['score'] < bestScore:
+                    #     bestScore = listOfMoves[move]['score']
+            bestMove = 0
     return listOfMoves[bestMove]
 
 #END MiniMax
