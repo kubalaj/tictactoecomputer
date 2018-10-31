@@ -73,24 +73,25 @@ def miniMax(board, player):
         return 0
     #If no win or draw recurssivly call
     listOfMoves = []
-    for i in range(len(availableSpots)):
-        board[availableSpots[i]] = player
+    for i in range(len(possibleMoves)):
+        board[possibleMoves[i]] = player
         #Store each move
         moves = {
             "move": "",
             "score": ""
         }
-        move['index'] = board[availableSpots[i]]
+        move['index'] = board[possibleMoves[i]]
 
         if(player == "X"):
             choosenMove = miniMax(board, "O")
-            move['score'] = choosenMove
+            move['score'] = choosenMove['score']
         else:
             choosenMove = miniMax(board, "X")
-            move['score'] = choosenMove
+            move['score'] = choosenMove['score']
 
-        board[availableSpots[i]] = moves["index"]
+        board[possibleMoves[i]] = moves["index"]
         listOfMoves.append(moves)
+        print listOfMoves
 
 
 
