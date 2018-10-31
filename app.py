@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-test = ["null", "null", "X", "null", "O", "null", "null", "X", "null"]
+test = ["X", "X", "X", "null", "O", "null", "null", "X", "null"]
 
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
@@ -37,7 +37,7 @@ def makeMove(space):
         return(sidePlacement)
     return ("null")
 
-
+#Start MiniMax
 def availableSpots(board):
     available = []
     for i in range(9):
@@ -45,6 +45,19 @@ def availableSpots(board):
             available.append(i)
     return available
 
+def isWinning(board, player):
+    #horizontal win
+    for i in range(3):
+    if board[i] == board[i+1] == board[i+3] == player:
+        return player
+    return "null"
+    #vertocal win
+    #diagonal win
+
+
+
+
+#END MiniMax
 def winningMove():
     diagonalWin = diagonalWinningMove()
     if diagonalWin != "null":
