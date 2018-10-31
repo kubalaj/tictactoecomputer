@@ -65,9 +65,9 @@ def miniMax(board, player):
     possibleMoves = availableSpots(board)
 
     #Check for Win or Draw
-    if(isWinning(board, "O")):
+    if(isWinning(board, "O") != "null"):
         return {'score':-10}
-    elif(isWinning(board, "X")):
+    elif(isWinning(board, "X") != "null"):
         return {'score': 10}
     elif len(possibleMoves) == 0:
         return {'score':0}
