@@ -38,13 +38,14 @@ def makeMove(space):
     return ("null")
 
 #Start MiniMax
+#return an array of availableSpots
 def availableSpots(board):
     available = []
     for i in range(9):
         if board[i] == "null":
             available.append(i)
     return available
-
+# Return if player has won
 def isWinning(board, player):
     #horizontal win
     for i in range(3):
@@ -57,8 +58,10 @@ def isWinning(board, player):
         print board[i+6]
         if board[i] == board [i+3] == board[i+6] == player:
             return player
-    return("null")
     #diagonal win
+    if board[0] == board [4] == board[8] == player or board[2] == board[4] == board[6] == player:
+        return player
+    return("null")
 
 
 
