@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-test = ["X", "null", "O", "null", "X", "null", "null", "O", "X"]
+test = ["X", "X", "O", "X", "X", ")", "null", "null", "null"]
 
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
@@ -75,11 +75,10 @@ def miniMax(board, player):
     listOfMoves = []
     for i in range(len(availableSpots)):
         board[availableSpots[i]] = player
-
         #Store each move
         moves = {
-            "move": ""
-            "score":""
+            "move": "",
+            "score": ""
         }
         move['index'] = board[availableSpots[i]]
 
@@ -88,7 +87,7 @@ def miniMax(board, player):
             move['score'] = choosenMove
         else:
             choosenMove = miniMax(board, "X")
-             move['score'] = choosenMove
+            move['score'] = choosenMove
 
         board[availableSpots[i]] = moves["index"]
         listOfMoves.append(moves)
