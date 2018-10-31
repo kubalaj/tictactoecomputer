@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-test = ["X", "null", "X", "O", "null", "null", "O", "null", "null"]
+test = ["X", "null", "X", "O", "X", "O", "X", "O", "X"]
 
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
@@ -73,7 +73,6 @@ def miniMax(board, player):
         return 0
     #If no win or draw recurssivly call
     listOfMoves = []
-    print "before loop"
     for i in range(len(possibleMoves)):
         moves = {
             "move": "",
@@ -85,16 +84,13 @@ def miniMax(board, player):
 
         if(player == "X"):
             choosenMove = miniMax(board, "O")
-            print choosenMove
             moves['score'] = choosenMove
         else:
             choosenMove = miniMax(board, "X")
-            print choosenMove
             moves['score'] = choosenMove
 
         board[possibleMoves[i]] = moves["index"]
         listOfMoves.append(moves)
-    print listOfMoves
 
     if player == "X":
         bestScore = -10000
@@ -108,7 +104,7 @@ def miniMax(board, player):
             if moves[i]["score"] < bestScore:
                 bestScore = moves[i]["score"]
                 bestMove = i
-    return[bestMove] 
+    return[bestMove]
 
 #END MiniMax
 def winningMove():
