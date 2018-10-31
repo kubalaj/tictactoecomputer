@@ -69,7 +69,7 @@ def miniMax(board):
         return -10
     elif(isWinning(board, "X")):
         return 10
-    else
+    else:
         return 0
 
 
