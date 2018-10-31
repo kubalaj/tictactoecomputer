@@ -96,7 +96,19 @@ def miniMax(board, player):
         listOfMoves.append(moves)
     print listOfMoves
 
-
+    if player == "X":
+        bestScore = -10000
+        for i in range(len(moves)):
+            if moves[i]["score"] > bestScore:
+                bestScore = moves[i]["score"]
+                bestMove = i
+    else:
+        bestScore = 10000
+        for i in range(len(moves)):
+            if moves[i]["score"] < bestScore:
+                bestScore = moves[i]["score"]
+                bestMove = i
+    return[bestMove] 
 
 #END MiniMax
 def winningMove():
