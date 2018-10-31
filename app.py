@@ -48,8 +48,8 @@ def availableSpots(board):
 def isWinning(board, player):
     #horizontal win
     for i in range(3):
-    if board[i] == board[i+1] == board[i+3] == player:
-        return player
+        if board[i] == board[i+1] == board[i+3] == player:
+            return player
     return "null"
     #vertocal win
     #diagonal win
