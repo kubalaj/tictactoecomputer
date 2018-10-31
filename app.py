@@ -5,7 +5,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-test = ["X", "null", "X", "O", "X", "O", "X", "O", "X"]
+test = ["O", "null", "O", "X", "O", "X", "O", "X", "O"]
 
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
