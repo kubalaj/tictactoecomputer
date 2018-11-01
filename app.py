@@ -15,8 +15,6 @@ def makeMove(space):
     boardState[spot['index']] = "O"
     return str(spot['index'])
 
-#Start MiniMax
-#return an array of availableSpots
 def availableSpots(board):
     available = []
     for i in range(9):
@@ -42,21 +40,20 @@ def isWinning(board, player):
 def miniMax(board, player):
     possibleMoves = availableSpots(board)
 
-    #Check for Win or Draw
+    #Check if Win
     if(isWinning(board, "X") != "null"):
         return {'score':-10}
     elif(isWinning(board, "O") != "null"):
         return {'score':10}
     elif len(possibleMoves) <= 1:
         return {'score':0}
-    #If no win or draw recurssivly call
 
+    #Initiate Recursion for developing all possible moves with scores
     listOfMoves = []
     for i in range(len(possibleMoves)):
         moves = {}
         moves['index'] = board[possibleMoves[i]]
         board[possibleMoves[i]] = player
-        #Store each move
 
         if(player == "O"):
             choosenMove = miniMax(board, "X")
@@ -67,6 +64,7 @@ def miniMax(board, player):
         board[possibleMoves[i]] = moves["index"]
         listOfMoves.append(moves)
 
+    #Check for the actual Best Move
     if player == "O":
         bestScore = -10000
         for move in range(len(listOfMoves)):
@@ -80,8 +78,6 @@ def miniMax(board, player):
                 bestScore = listOfMoves[move]['score']
                 bestMove = move
     return listOfMoves[bestMove]
-
-#END MiniMax
 
 if __name__ == '__main__':
     app.run()
