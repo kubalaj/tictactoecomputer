@@ -26,7 +26,9 @@ def isTerminalState():
 
 @app.route("/api/reset", methods=['GET'])
 def reset():
-    global boardState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    global boardState
+    newState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    boardState = newState
     return "completed"
 
 def availableSpots(board):
