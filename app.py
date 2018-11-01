@@ -22,7 +22,7 @@ def isTerminalState():
     elif(isWinning(boardState, "O") == "O"):
         return "COMPUTER WINS! PLAY AGAIN?"
     else:
-        return None
+        return "false"
 def availableSpots(board):
     available = []
     for i in range(9):
