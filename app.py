@@ -5,11 +5,18 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-test = ["X", "X", "O", "X", "X", "null", "O", "O", "O"]
+boardState = ["null", "null", "null", "null", "null", "null", "null", "null", "null"]
 
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
-    board[int(space)] = "X"
+    boardState[int(space)] = "X"
+    spot = miniMax(boardState, "O")['placement']
+    boardState[spot] = "O"
+    if(isWinning(boardState, "X") != "null"):
+        print "x wins"
+    if(isWinning(boardState, "O") != "null"):
+        print "x wins"
+    return str(spot)
 
 #Start MiniMax
 #return an array of availableSpots
@@ -39,9 +46,9 @@ def miniMax(board, player):
     possibleMoves = availableSpots(board)
 
     #Check for Win or Draw
-    if(isWinning(board, "O") != "null"):
+    if(isWinning(board, "X") != "null"):
         return {'score':-10}
-    elif(isWinning(board, "X") != "null"):
+    elif(isWinning(board, "O") != "null"):
         return {'score':10}
     elif len(possibleMoves) == 0:
         return {'score':0}
@@ -50,11 +57,11 @@ def miniMax(board, player):
     for i in range(len(possibleMoves)):
         moves = {}
         moves['index'] = board[possibleMoves[i]]
-        moves['pacement'] = possibleMoves[i]
+        moves['placement'] = possibleMoves[i]
         board[possibleMoves[i]] = player
         #Store each move
 
-        if(player == "X"):
+        if(player == "O"):
             choosenMove = miniMax(board, "O")
             moves['score'] = choosenMove['score']
         else:
@@ -64,7 +71,7 @@ def miniMax(board, player):
         listOfMoves.append(moves)
 
     bestMove = 0
-    if player == "X":
+    if player == "O":
         bestScore = -10000
         for move in range(len(listOfMoves)):
             if listOfMoves[move]['score'] > bestScore:
