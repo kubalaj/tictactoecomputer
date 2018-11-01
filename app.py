@@ -13,9 +13,11 @@ def restart():
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     if(isWinning(boardState, "X"):
-        return "HUMAN WINS!"
-    elif(isWinning(boardState, "X"):
-        return "COMPUTER OVERLOAD WINS"
+        return "HUMAN WINS! PLAY AGAIN?"
+    if(isWinning(boardState, "X"):
+        return "COMPUTER OVERLOAD WINS! PLAY AGAIN?"
+    if(len(availableSpots(boardState)) == 0):
+        return "DRAW, PLAY AGAIN?"
     boardState[int(space)] = "X"
     spot = miniMax(boardState, "O")
     boardState[spot['index']] = "O"
@@ -51,7 +53,7 @@ def miniMax(board, player):
         return {'score':-10}
     elif(isWinning(board, "O") != "null"):
         return {'score':10}
-    elif len(possibleMoves) <= 1:
+    elif len(possibleMoves) == 0:
         return {'score':0}
 
     #Initiate Recursion for developing all possible moves with scores
