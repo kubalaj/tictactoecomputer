@@ -7,6 +7,9 @@ CORS(app)
 
 boardState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
+@app.route("/api/restart", methods=['GET'])
+def restart():
+    boardState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     boardState[int(space)] = "X"
