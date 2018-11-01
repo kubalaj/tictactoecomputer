@@ -1,6 +1,7 @@
 #!flask/bin/python
-from flask import Flask, jsonify, request
+from flask import Flask, request
 from flask_cors import CORS
+import json
 
 app = Flask(__name__)
 CORS(app)
@@ -10,14 +11,18 @@ boardState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     boardState[int(space)] = "X"
-    if(len(availableSpots(boardState)) == 0):
-        return "DRAW, PLAY AGAIN?"
     spot = miniMax(boardState, "O")
     boardState[spot['index']] = "O"
-    if(isWinning(boardState, "O") == "O"):
-        return "COMPUTER WINS! PLAY AGAIN?"
     return str(spot['index'])
 
+@app.route("/api/win", methods=['GET'])
+def isTerminalState():
+    if(len(availableSpots(boardState)) == 0):
+        return "DRAW, PLAY AGAIN?"
+    elif(isWinning(boardState, "O") == "O"):
+        return "COMPUTER WINS! PLAY AGAIN?"
+    else:
+        return None
 def availableSpots(board):
     available = []
     for i in range(9):
