@@ -11,6 +11,8 @@ boardState = ["null", "null", "null", "null", "null", "null", "null", "null", "n
 def makeMove(space):
     boardState[int(space)] = "X"
     spot = miniMax(boardState, "O")
+    boardState[spot['index']] = "O"
+    print spot
     return str(spot['index'])
 
 #Start MiniMax
@@ -20,8 +22,6 @@ def availableSpots(board):
     for i in range(9):
         if board[i] != "X" and board[i] != "O":
             available.append(i)
-    print available
-    print board
     return available
 
 # Return if player has won
