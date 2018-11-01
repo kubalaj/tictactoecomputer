@@ -12,6 +12,10 @@ def restart():
     boardState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
+    if(isWinning(boardState, "X"):
+        return "HUMAN WINS!"
+    elif(isWinning(boardState, "X"):
+        return "COMPUTER OVERLOAD WINS"
     boardState[int(space)] = "X"
     spot = miniMax(boardState, "O")
     boardState[spot['index']] = "O"
