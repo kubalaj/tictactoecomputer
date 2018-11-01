@@ -18,8 +18,10 @@ def makeMove(space):
 def availableSpots(board):
     available = []
     for i in range(9):
-        if board[i] == "null":
+        if board[i] != "X" and board[i] != "O":
             available.append(i)
+    print available
+    print board
     return available
 
 # Return if player has won
