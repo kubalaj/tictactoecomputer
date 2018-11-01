@@ -13,14 +13,13 @@ def restart():
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     boardState[int(space)] = "X"
-    if(isWinning(boardState, "X")):
-        print "HUMAN WINS! PLAY AGAIN?"
+    if(isWinning(boardState, "O")):
+        print "COMPUTER WINS! PLAY AGAIN?"
+    if(len(availableSpots(boardState)) == 0):
+        print "DRAW, PLAY AGAIN?"
     # if(isWinning(boardState, "X")):
     #     print "won"
     #     return "COMPUTER OVERLOAD WINS! PLAY AGAIN?"
-    # if(len(availableSpots(boardState)) == 0):
-    #     print "draw"
-    #     return "DRAW, PLAY AGAIN?"
     spot = miniMax(boardState, "O")
     boardState[spot['index']] = "O"
     return str(spot['index'])
