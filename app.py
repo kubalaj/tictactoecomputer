@@ -10,15 +10,12 @@ boardState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     boardState[int(space)] = "X"
-    if(isWinning(boardState, "O") == "O"):
-        print "COMPUTER WINS! PLAY AGAIN?"
     if(len(availableSpots(boardState)) == 0):
-        print "DRAW, PLAY AGAIN?"
-    # if(isWinning(boardState, "X")):
-    #     print "won"
-    #     return "COMPUTER OVERLOAD WINS! PLAY AGAIN?"
+        return "DRAW, PLAY AGAIN?"
     spot = miniMax(boardState, "O")
     boardState[spot['index']] = "O"
+    if(isWinning(boardState, "O") == "O"):
+        return "COMPUTER WINS! PLAY AGAIN?"
     return str(spot['index'])
 
 def availableSpots(board):
