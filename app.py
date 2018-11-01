@@ -23,6 +23,14 @@ def isTerminalState():
         return "COMPUTER WINS! PLAY AGAIN?"
     else:
         return "false"
+
+@app.route("/api/reset", methods=['GET'])
+def reset():
+    print boardState
+    boardState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    print boardState
+    return "completed"
+
 def availableSpots(board):
     available = []
     for i in range(9):
