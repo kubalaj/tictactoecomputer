@@ -10,13 +10,8 @@ boardState = ["null", "null", "null", "null", "null", "null", "null", "null", "n
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     boardState[int(space)] = "X"
-    spot = miniMax(boardState, "O")['placement']
-    boardState[spot] = "O"
-    if(isWinning(boardState, "X") != "null"):
-        print "x wins"
-    if(isWinning(boardState, "O") != "null"):
-        print "x wins"
-    return str(spot)
+    spot = miniMax(boardState, "O")
+    return str(spot['index'])
 
 #Start MiniMax
 #return an array of availableSpots
@@ -53,11 +48,11 @@ def miniMax(board, player):
     elif len(possibleMoves) == 0:
         return {'score':0}
     #If no win or draw recurssivly call
+
     listOfMoves = []
     for i in range(len(possibleMoves)):
         moves = {}
-        moves['index'] = board[possibleMoves[i]]
-        moves['placement'] = possibleMoves[i]
+        moves['index'] = possibleMoves[i]
         board[possibleMoves[i]] = player
         #Store each move
 
