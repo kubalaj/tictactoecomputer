@@ -7,13 +7,10 @@ CORS(app)
 
 boardState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
-@app.route("/api/restart", methods=['GET'])
-def restart():
-    boardState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     boardState[int(space)] = "X"
-    if(isWinning(boardState, "O")):
+    if(isWinning(boardState, "O") == "O"):
         print "COMPUTER WINS! PLAY AGAIN?"
     if(len(availableSpots(boardState)) == 0):
         print "DRAW, PLAY AGAIN?"
