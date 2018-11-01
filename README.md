@@ -1,7 +1,10 @@
 # Tic Tac Toe With MiniMax
 
-The following project is a tic tac toe game built with react, hitting a locally ran python and flask back end. The game is a demonstration of the Mini Max Algorithm making the computer AI unbeatable. This API is also setup on heroku
+The following project is a tic tac toe game built with react, hitting a locally ran python and flask back end. The game is a demonstration of the Mini Max Algorithm making the computer AI unbeatable. This API is also setup on heroku with continuous deployment of the master branch. Whenever master is updated a fresh build is made.
 
+https://intense-woodland-70087.herokuapp.com/
+
+(NOTE) certain endpoints are available with this link, but no templates are rendered.
 
 # Build Notes
 
@@ -9,23 +12,33 @@ In order to use this game it is suggested that you build the backend first.
 
 ## Backend Build
 Building
-  - Download the most recent version of python https://www.python.org/downloads/
-  - Install the virtual env
-      - `cd backend-ai`
-      - `python3 -m venv venv`
+  - Clone the repo `git clone https://github.com/kubalaj/tictactoecomputer`
 
-  - Activate Env
+  - Download the most recent version of python https://www.python.org/downloads/ You must have python3 to run this code.
+  - Activate the virtual Enviorment
 
   `. venv/bin/activate`
-  - Run flask
-    - `export FLASK_APP=computer_service.py`
+  - Install and Run flask
+    - Install pip
+      - `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
+      - `python get-pip.py`
+    - Install FLASK
+      - `pip install flask`
+    - Install CORS package
+      - `pip install flask-cors`
+    - Run Flask
     - `flask run`
 
 ## Frontend Build
 
-Once you have the backend running change directories to the main project. Navigate to the front end folder and follow the instructions below. NOTE: Project was built on `npm v6.4.1` and `node v8.9.4`
+Once you have the backend running change directories to the main project. NOTE: Project was built on `npm v6.4.1` and `node v8.9.4`
+
 - `git clone https://github.com/kubalaj/tictactoe`
-- `cd tictactoe/tic-tac-toe`
+- `cd tic-tac-toe`
+
+Then run:
+- `npm install`
+- `npm start`
 
 Then run:
 
@@ -46,6 +59,9 @@ This project was build with the mentality of using the [gitflow workflow](https:
 
 #### Refactor State Management
 - State is both stored on the front end and the back end. We can solve this by passing the state to the back end. Some work was made towards this goal but, was not completed. The work is stored in the `clientSideState` branch.
+
+#### Documentation
+- This API should be documented using some sort of service like swagger.
 
 #### Introduce Alpha Beta Pruning
 - The following algorithm could be made better by implementing [Alpha-beta prunning](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning). Seeing as the problem is finite set of clickable squares, performance isn't too big of a concern and this work item can be put off.
