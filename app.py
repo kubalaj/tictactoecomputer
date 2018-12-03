@@ -8,6 +8,23 @@ CORS(app)
 
 boardState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
 
+@app.route("/api/<state>", methods=['GET'])
+# def makeMove(state):
+#     board = state.split(",")
+#     for space in range(len(board)):
+#         if type(board[space]) == unicode:
+#             board[space] = (board[space].encode('UTF8'))
+#         if board[space] != "O" and board[space] != "X":
+#             board[space] = int(board[space])
+#     global boardState
+#     boardState = board
+#     print board
+#     print boardState
+#     spot = miniMax(board, "0")
+#     print spot['index']
+#     board[int(spot['index'])] = "O"
+#     return json.dumps(board)
+
 @app.route("/api/<space>", methods=['GET'])
 def makeMove(space):
     boardState[int(space)] = "X"
