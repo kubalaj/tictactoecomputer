@@ -16,17 +16,14 @@ def makeMove(state):
             board[space] = int(board[space])
     spot = miniMax(board, "O")
     board[int(spot['index'])] = "O"
-    return json.dumps(board)
+    isGameOver = isTerminalState(board)
+    if(isGameOver == "false"):
+        return json.dumps(board)
+    else:
+        return isGameOver
 
 @app.route("/api/win/<state>", methods=['GET'])
 def isTerminalState(state):
-    board = state.split(",")
-    for space in range(len(board)):
-        if type(board[space]) == unicode:
-            board[space] = (board[space].encode('UTF8'))
-        if board[space] != "O" and board[space] != "X":
-            board[space] = int(board[space])
-    print board
     if(len(availableSpots(board)) == 0):
         return "DRAW, PLAY AGAIN?"
     elif(isWinning(board, "O") == "O"):
@@ -42,6 +39,7 @@ def formatBoard(board):
         if board[space] != "O" and board[space] != "X":
             board[space] = int(board[space])
     return board
+
 def availableSpots(board):
     available = []
     for i in range(9):
