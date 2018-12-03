@@ -34,6 +34,14 @@ def isTerminalState(state):
     else:
         return "false"
 
+def formatBoard(board):
+    board = board.split(",")
+    for space in range(len(board)):
+        if type(board[space]) == unicode:
+            board[space] = (board[space].encode('UTF8'))
+        if board[space] != "O" and board[space] != "X":
+            board[space] = int(board[space])
+    return board
 def availableSpots(board):
     available = []
     for i in range(9):
