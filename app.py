@@ -26,19 +26,13 @@ def isTerminalState(state):
             board[space] = (board[space].encode('UTF8'))
         if board[space] != "O" and board[space] != "X":
             board[space] = int(board[space])
+    print board
     if(len(availableSpots(board)) == 0):
         return "DRAW, PLAY AGAIN?"
     elif(isWinning(board, "O") == "O"):
         return "COMPUTER WINS! PLAY AGAIN?"
     else:
         return "false"
-
-@app.route("/api/reset", methods=['GET'])
-def reset():
-    global boardState
-    newState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-    boardState = newState
-    return "completed"
 
 def availableSpots(board):
     available = []
