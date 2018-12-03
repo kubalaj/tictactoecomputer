@@ -18,11 +18,17 @@ def makeMove(state):
     board[int(spot['index'])] = "O"
     return json.dumps(board)
 
-@app.route("/api/win", methods=['GET'])
-def isTerminalState():
-    if(len(availableSpots(boardState)) == 0):
+@app.route("/api/win/<state>", methods=['GET'])
+def isTerminalState(state):
+    board = state.split(",")
+    for space in range(len(board)):
+        if type(board[space]) == unicode:
+            board[space] = (board[space].encode('UTF8'))
+        if board[space] != "O" and board[space] != "X":
+            board[space] = int(board[space])
+    if(len(availableSpots(board)) == 0):
         return "DRAW, PLAY AGAIN?"
-    elif(isWinning(boardState, "O") == "O"):
+    elif(isWinning(board, "O") == "O"):
         return "COMPUTER WINS! PLAY AGAIN?"
     else:
         return "false"
