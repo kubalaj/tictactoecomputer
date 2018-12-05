@@ -19,13 +19,15 @@ def makeMove(state):
     isGameOver = isTerminalState(board)
     if(isGameOver == "false"):
         return json.dumps(board)
+    elif(isGameOver == "tie"):
+        return "DRAW, PLAY AGAIN?"
     else:
-        return isGameOver
+        return "COMPUTER WINS! PLAY AGAIN?"
 
 @app.route("/api/win/<state>", methods=['GET'])
 def isTerminalState(state):
     if(len(availableSpots(board)) == 0):
-        return "DRAW, PLAY AGAIN?"
+        return "tie"
     elif(isWinning(board, "O") == "O"):
         return "COMPUTER WINS! PLAY AGAIN?"
     else:
