@@ -16,15 +16,16 @@ def makeMove(state):
             board[space] = int(board[space])
     spot = miniMax(board, "O")
     board[int(spot['index'])] = "O"
-    isGameOver = isTerminalState(board)
-    if(isGameOver == "false"):
-        return json.dumps(board)
-    elif(isGameOver == 0):
-        print('no more spaces')
-        return json.dumps('0')
+    return json.dumps(board)
+
+@app.route("/api/win/<state>" methods=['GET'])
+def isTerminalState(state):
+    if(len(availableSpots(state)) == 0):
+        return "DRAW, PLAY AGAIN?"
+    elif(isWinning(state, "O") == "O"):
+        return "COMPUTER WINS! PLAY AGAIN?"
     else:
-        print('winner')
-        return json.dumps('1')
+        return "false"
 
 def isTerminalState(state):
     if(len(availableSpots(state)) == 0):
