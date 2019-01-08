@@ -8,17 +8,12 @@ CORS(app)
 
 @app.route("/api/<state>", methods=['GET'])
 def makeMove(state):
-    board = state.split(",")
-    for space in range(len(board)):
-        if type(board[space]) == unicode:
-            board[space] = (board[space].encode('UTF8'))
-        if board[space] != "O" and board[space] != "X":
-            board[space] = int(board[space])
+    board = formatBoard(state)
     spot = miniMax(board, "O")
     board[int(spot['index'])] = "O"
     return json.dumps(board)
 
-@app.route("/api/win/<state>" methods=['GET'])
+@app.route("/api/win/<state>", methods=['GET'])
 def isTerminalState(state):
     if(len(availableSpots(state)) == 0):
         return "DRAW, PLAY AGAIN?"
@@ -28,9 +23,10 @@ def isTerminalState(state):
         return "false"
 
 def isTerminalState(state):
-    if(len(availableSpots(state)) == 0):
+    board = formatBoard(state)
+    if(len(availableSpots(board)) == 0):
         return 0
-    elif(isWinning(state, "O") == "O"):
+    elif(isWinning(board, "O") == "O"):
         return 1
     else:
         return "false"
