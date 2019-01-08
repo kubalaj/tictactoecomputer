@@ -15,19 +15,11 @@ def makeMove(state):
 
 @app.route("/api/win/<state>", methods=['GET'])
 def isTerminalState(state):
-    if(len(availableSpots(state)) == 0):
-        return "DRAW, PLAY AGAIN?"
-    elif(isWinning(state, "O") == "O"):
-        return "COMPUTER WINS! PLAY AGAIN?"
-    else:
-        return "false"
-
-def isTerminalState(state):
     board = formatBoard(state)
     if(len(availableSpots(board)) == 0):
-        return 0
+        return "DRAW, PLAY AGAIN?"
     elif(isWinning(board, "O") == "O"):
-        return 1
+        return "COMPUTER WINS! PLAY AGAIN?"
     else:
         return "false"
 
