@@ -6,30 +6,31 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-boardState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+@app.route("/api/<state>", methods=['GET'])
+def makeMove(state):
+    board = formatBoard(state)
+    spot = miniMax(board, "O")
+    board[int(spot['index'])] = "O"
+    return json.dumps(board)
 
-@app.route("/api/<space>", methods=['GET'])
-def makeMove(space):
-    boardState[int(space)] = "X"
-    spot = miniMax(boardState, "O")
-    boardState[spot['index']] = "O"
-    return str(spot['index'])
-
-@app.route("/api/win", methods=['GET'])
-def isTerminalState():
-    if(len(availableSpots(boardState)) == 0):
+@app.route("/api/win/<state>", methods=['GET'])
+def isTerminalState(state):
+    formattedBoard = formatBoard(state)
+    if(len(availableSpots(formattedBoard)) == 0):
         return "DRAW, PLAY AGAIN?"
-    elif(isWinning(boardState, "O") == "O"):
+    elif(isWinning(formattedBoard, "O") == "O"):
         return "COMPUTER WINS! PLAY AGAIN?"
     else:
         return "false"
 
-@app.route("/api/reset", methods=['GET'])
-def reset():
-    global boardState
-    newState = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-    boardState = newState
-    return "completed"
+def formatBoard(board):
+    board = board.split(",")
+    for space in range(len(board)):
+        if type(board[space]) == unicode:
+            board[space] = (board[space].encode('UTF8'))
+        if board[space] != "O" and board[space] != "X":
+            board[space] = int(board[space])
+    return board
 
 def availableSpots(board):
     available = []
