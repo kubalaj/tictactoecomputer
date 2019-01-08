@@ -1,9 +1,13 @@
 #!flask/bin/python
 from flask import Flask, request
 from flask_cors import CORS
+import sys
+import logging
 import json
 
 app = Flask(__name__)
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 CORS(app)
 
 @app.route("/api/<state>", methods=['GET'])
