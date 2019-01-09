@@ -32,6 +32,8 @@ def formatBoard(board):
     for space in range(len(board)):
         # if type(board[space]) == str:
         board[space] = (board[space].encode('utf-8'))
+        print board[space]
+        sys.stdout.flush()
         if board[space] != "O" and board[space] != "X":
             board[space] = int(board[space])
     return board
