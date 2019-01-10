@@ -10,6 +10,10 @@ app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 CORS(app)
 
+@app.route('/')
+def hello_world():
+    return 'Sup World'
+
 @app.route("/api/<state>", methods=['GET'])
 def makeMove(state):
     board = formatBoard(state)
